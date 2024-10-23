@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://b556iy5arw8xw"]
+
+[ext_resource type="Shader" path="res://scenes/downAndUpscaleWithDither.gdshader" id="2_l0xl0"]
+[ext_resource type="PackedScene" uid="uid://dch1g7dwck041" path="res://scenes/barbarianimport.tscn" id="3_svy4n"]
+[ext_resource type="Script" path="res://scenes/shaderRect.gd" id="4_jo4jj"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_snogp"]
+load_path = "res://.godot/imported/fantasy-24-1x.png-409f676003cd02f06da09b6a4065eb80.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iwqyj"]
+shader = ExtResource("2_l0xl0")
+shader_parameter/colorCount = 24.0
+shader_parameter/downScaleFactor = 4.0
+shader_parameter/ditherSpread = 0.0
+shader_parameter/screenSize = Vector2(3440, 1440)
+shader_parameter/colorPallette = SubResource("CompressedTexture2D_snogp")
+
+[sub_resource type="Environment" id="Environment_kycao"]
+background_mode = 1
+background_energy_multiplier = 0.0
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50067, 4.47714)
+projection = 1
+size = 4.0
+
+[node name="Barbarian" parent="." instance=ExtResource("3_svy4n")]
+
+[node name="ShaderRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_iwqyj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+script = ExtResource("4_jo4jj")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kycao")

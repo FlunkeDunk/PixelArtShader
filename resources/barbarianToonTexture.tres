@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dgnf8io04mj8f"]
+
+[ext_resource type="Texture2D" uid="uid://cw8kfi4muy46y" path="res://Assets/Assets/fbx/barbarian_texture.png" id="1_kos6s"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_kos6s")
