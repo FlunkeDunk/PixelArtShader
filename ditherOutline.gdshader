@@ -134,5 +134,4 @@ void fragment() {
 	vec3 backgroundColor =  float(isBackground) * floor(mod(UV.x * VIEWPORT_SIZE.x / 2.0 + floor(mod(UV.y * VIEWPORT_SIZE.y / 2.0, 2.0)), 2.0)) * vec3(0.4);
 	
 	ALBEDO = characterColor + backgroundColor;
-	ALBEDO = vec3(normalSum) * float(isInline);
 	}

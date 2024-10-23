@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://scenes/shaderRect.gd" id="4_jo4jj"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_snogp"]
-load_path = "res://.godot/imported/fantasy-24-1x.png-409f676003cd02f06da09b6a4065eb80.s3tc.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iwqyj"]
 shader = ExtResource("2_l0xl0")

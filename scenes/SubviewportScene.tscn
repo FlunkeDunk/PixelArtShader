@@ -11,10 +11,10 @@ shader = ExtResource("2_40v80")
 shader_parameter/colorCount = 46.0
 shader_parameter/ditherSpread = 0.0
 shader_parameter/backgroundDistance = 1575.0
-shader_parameter/outlineThreshhold = 0.8
+shader_parameter/outlineThreshhold = 0.3
 shader_parameter/outlineDarkness = 0.0
-shader_parameter/inlineLight = 5.0
-shader_parameter/normalThreshhold = 3.0
+shader_parameter/inlineLight = 2.5
+shader_parameter/normalThreshhold = 0.5
 shader_parameter/normalEdgeBias = Vector3(1, 1, 1)
 shader_parameter/colorPallette = ExtResource("2_8ibx7")
 
@@ -56,22 +56,22 @@ render_target_update_mode = 4
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
-light_energy = 1.7
+light_energy = 1.5
 omni_attenuation = 0.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -3)
-light_energy = 1.7
+light_energy = 1.5
 omni_attenuation = 0.0
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 0)
-light_energy = 1.7
+light_energy = 1.5
 omni_attenuation = 0.0
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, 0)
-light_energy = 1.7
+light_energy = 1.5
 omni_attenuation = 0.0
 
 [node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport"]

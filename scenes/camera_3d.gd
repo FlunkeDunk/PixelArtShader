@@ -9,9 +9,9 @@ func _process(delta: float) -> void:
 	else:
 		pointer.rotation.x += 0 * delta
 
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_pressed("move_right"):
 		pointer.rotation.y += 1 * delta
-	elif Input.is_action_pressed("move_right"):
+	elif Input.is_action_pressed("move_left"):
 		pointer.rotation.y += -1 * delta
 	else:
 		pointer.rotation.y += 0 * delta
