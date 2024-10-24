@@ -4,7 +4,6 @@ uniform vec3 highlightColor : source_color = vec3(0.45, 0.74, 0.82);
 uniform vec3 midToneColor : source_color = vec3(0.23, 0.36, 0.54);
 uniform vec3 shadowColor : source_color = vec3(0.09, 0.12, 0.21);
 
-
 void fragment() {
 	ALBEDO = vec3(1.0);
 }

@@ -1,31 +1,48 @@
-[gd_scene load_steps=13 format=4 uid="uid://cfoeeb1au6jx6"]
+[gd_scene load_steps=13 format=4 uid="uid://dh6x83i60w44k"]
 
-[ext_resource type="Script" path="res://Scripts/objects.gd" id="1_4pelj"]
-[ext_resource type="Material" uid="uid://dxsd0beirpbsh" path="res://Resources/BlueboxToon.tres" id="1_hm88o"]
-[ext_resource type="Material" uid="uid://bbxa4wl3127sm" path="res://Resources/GroundToon.tres" id="1_qa11n"]
-[ext_resource type="Script" path="res://Scripts/float_box.gd" id="2_64uwc"]
-[ext_resource type="Material" uid="uid://daadscrxl0yda" path="res://Resources/RedBoxToon.tres" id="2_f2a8n"]
-[ext_resource type="Shader" path="res://Shaders/PixelArtShader.gdshader" id="3_wqs07"]
+[ext_resource type="Script" path="res://Scripts/objects.gd" id="1_uw0cg"]
+[ext_resource type="Script" path="res://Scripts/float_box.gd" id="2_qv5ra"]
+[ext_resource type="Shader" path="res://Shaders/PixelArtShader.gdshader" id="3_7wqe4"]
 
-[sub_resource type="Environment" id="Environment_ckft2"]
+[sub_resource type="Environment" id="Environment_08kqm"]
 background_mode = 1
+background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.0
 ambient_light_energy = 0.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_konic"]
-material = ExtResource("1_qa11n")
+[sub_resource type="BoxMesh" id="BoxMesh_5wbtm"]
 size = Vector3(10, 1, 10)
 
-[sub_resource type="BoxMesh" id="BoxMesh_wxwu7"]
-material = ExtResource("2_f2a8n")
+[sub_resource type="BoxMesh" id="BoxMesh_tu26g"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_1lhxy"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_euss8"]
+diffuse_mode = 3
+specular_mode = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7tqwh"]
 _surfaces = [{
 "aabb": AABB(-0.682432, -0.429119, -0.694426, 1.39691, 1.17, 1.25268),
 "format": 34896613383,
 "index_count": 324,
 "index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcAGAAZABoAGwAcAB0AHgAfACAAIQAiACMAJAAlACYAJwAoACkAKgArACwALQAuAC8AMAAxADIAMwA0ADUANgA3ADgAOQA6ADsAPAA9AD4APwBAAEEAQgBDAEQARQBGAEcASABJAEoASwBMAE0ATgBPAFAAUQBSAFMAVABVAFYAVwBYAFkAWgBbAFwAXQBeAF8AYABhAGIAYwBkAGUAZgBnAGgAaQBqAGsAbABtAG4AbwBwAHEAcgBzAHQAdQB2AHcAeAB5AHoAewB8AH0AfgB/AIAAgQCCAIMAhACFAIYAhwCIAIkAigCLAIwAjQCOAI8AkACRAJIAkwCUAJUAlgCXAJgAmQCaAJsAnACdAJ4AnwCgAKEAogCjAKQApQCmAKcAqACpAKoAqwCsAK0ArgCvALAAsQCyALMAtAC1ALYAtwC4ALkAugC7ALwAvQC+AL8AvwC+AMAAwQDCAMMAxADFAMYAxwDIAMkAygDLAMwAzQDOAM8A0ADRANIA0wDUANUA1gDXANgA2QDaANsA3ADdAN4A3wDgAOEA4QDgAOIA4wDkAOUA5gDnAOgA6ADnAOkA6gDrAOwA7QDuAO8A8ADxAPIA8wD0APUA9gD3APgA+QD6APsA/AD9AP4A/wAAAQEBAgEDAQQBBQEGAQcBCAEJAQoBCwEMAQ0BDgEPARABEQESARMBFAEVARYBFwEYARkBGgEbARwBHQEeAR8BIAEhASIBIwEkASUBJgEnASgBKQEqASsBLAEtAS4BLwEwATEBMgEzATQBNQE2ATcBOAE5AToBOwE8AT0B"),
-"material": ExtResource("1_hm88o"),
+"material": SubResource("StandardMaterial3D_euss8"),
+"name": "mat22",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 318,
+"vertex_data": PackedByteArray("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")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nesqg"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_m03x0"]
+_surfaces = [{
+"aabb": AABB(-0.682432, -0.429119, -0.694426, 1.39691, 1.17, 1.25268),
+"format": 34896613383,
+"index_count": 324,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcAGAAZABoAGwAcAB0AHgAfACAAIQAiACMAJAAlACYAJwAoACkAKgArACwALQAuAC8AMAAxADIAMwA0ADUANgA3ADgAOQA6ADsAPAA9AD4APwBAAEEAQgBDAEQARQBGAEcASABJAEoASwBMAE0ATgBPAFAAUQBSAFMAVABVAFYAVwBYAFkAWgBbAFwAXQBeAF8AYABhAGIAYwBkAGUAZgBnAGgAaQBqAGsAbABtAG4AbwBwAHEAcgBzAHQAdQB2AHcAeAB5AHoAewB8AH0AfgB/AIAAgQCCAIMAhACFAIYAhwCIAIkAigCLAIwAjQCOAI8AkACRAJIAkwCUAJUAlgCXAJgAmQCaAJsAnACdAJ4AnwCgAKEAogCjAKQApQCmAKcAqACpAKoAqwCsAK0ArgCvALAAsQCyALMAtAC1ALYAtwC4ALkAugC7ALwAvQC+AL8AvwC+AMAAwQDCAMMAxADFAMYAxwDIAMkAygDLAMwAzQDOAM8A0ADRANIA0wDUANUA1gDXANgA2QDaANsA3ADdAN4A3wDgAOEA4QDgAOIA4wDkAOUA5gDnAOgA6ADnAOkA6gDrAOwA7QDuAO8A8ADxAPIA8wD0APUA9gD3APgA+QD6APsA/AD9AP4A/wAAAQEBAgEDAQQBBQEGAQcBCAEJAQoBCwEMAQ0BDgEPARABEQESARMBFAEVARYBFwEYARkBGgEbARwBHQEeAR8BIAEhASIBIwEkASUBJgEnASgBKQEqASsBLAEtAS4BLwEwATEBMgEzATQBNQE2ATcBOAE5AToBOwE8AT0B"),
+"material": SubResource("StandardMaterial3D_nesqg"),
 "name": "mat22",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -36,7 +53,7 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hleni"]
 render_priority = 0
-shader = ExtResource("3_wqs07")
+shader = ExtResource("3_7wqe4")
 shader_parameter/outlineThreshold = 0.3
 shader_parameter/inlineThreshold = 0.3
 shader_parameter/normalEdgeBias = Vector3(1, 1, 1)
@@ -51,10 +68,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -40.0
-offset_right = -16.0
-offset_bottom = -40.0
+offset_left = -26.0
+offset_top = -3.0
+offset_right = -26.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -76,35 +93,30 @@ size = Vector2i(288, 162)
 render_target_update_mode = 4
 
 [node name="World" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
-environment = SubResource("Environment_ckft2")
+environment = SubResource("Environment_08kqm")
 
 [node name="Objects" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
-script = ExtResource("1_4pelj")
+script = ExtResource("1_uw0cg")
 
 [node name="Ground" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Objects"]
 transform = Transform3D(0.999998, -0.000288545, -0.00172466, 0.000292234, 0.999998, 0.00213206, 0.00172404, -0.00213256, 0.999996, 0, 0, 0)
-mesh = SubResource("BoxMesh_konic")
+mesh = SubResource("BoxMesh_5wbtm")
 skeleton = NodePath("../..")
 
 [node name="FloatBox" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Objects"]
-transform = Transform3D(0.983907, 0, 0.205941, 0, 1.00001, 0, -0.205941, 0, 0.983909, 0, 3.85891, 0)
-mesh = SubResource("BoxMesh_wxwu7")
+transform = Transform3D(0.577745, 0.0891676, 0.817613, -0.0330378, 0.995769, -0.0859805, -0.821804, 0.0225265, 0.578262, 0, 3.86826, 0)
+mesh = SubResource("BoxMesh_tu26g")
 skeleton = NodePath("../..")
-script = ExtResource("2_64uwc")
+script = ExtResource("2_qv5ra")
 
 [node name="Rocks" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Objects"]
-transform = Transform3D(2.14333, 0, 0, 0, 1.61781, 0, 0, 0, 2.83607, -1.50365, 1.18962, 2.6274)
-mesh = SubResource("ArrayMesh_1lhxy")
+transform = Transform3D(2.99887, 0, 0, 0, 2.5315, 0, 0, 0, 3.86547, -1.70908, 1.18962, 2.56631)
+mesh = SubResource("ArrayMesh_7tqwh")
 skeleton = NodePath("../..")
 
 [node name="Rocks2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Objects"]
-transform = Transform3D(2.14333, 0, 0, 0, 1.61781, 0, 0, 0, 2.83607, 2.70348, 1.18962, -1.01988)
-mesh = SubResource("ArrayMesh_1lhxy")
-skeleton = NodePath("../..")
-
-[node name="Rocks3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Objects"]
-transform = Transform3D(2.14333, 0, 0, 0, 1.61781, 0, 0, 0, 2.83607, -3.07702, 1.18962, -2.31791)
-mesh = SubResource("ArrayMesh_1lhxy")
+transform = Transform3D(2.92574, 0, 0, 0, 2.46977, 0, 0, 0, 3.77121, 2.4876, 1.18962, -2.38781)
+mesh = SubResource("ArrayMesh_m03x0")
 skeleton = NodePath("../..")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/World/Objects"]
@@ -126,6 +138,7 @@ far = 100.0
 
 [node name="ShaderQuad" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/CameraRigger/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0127693, -0.132103, 0.0245099)
+visible = false
 cast_shadow = 0
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_5m3mt")

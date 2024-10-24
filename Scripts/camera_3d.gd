@@ -15,3 +15,4 @@ func _process(delta: float) -> void:
 		pointer.rotation.y += -1 * delta
 	else:
 		pointer.rotation.y += 0 * delta
+Material

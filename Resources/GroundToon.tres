@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bbxa4wl3127sm"]
+
+[ext_resource type="Shader" path="res://Shaders/ToonShader.gdshader" id="1_aicdm"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_aicdm")
+shader_parameter/highlightColor = Color(0.905882, 0.835294, 0.701961, 1)
+shader_parameter/midToneColor = Color(0.752941, 0.580392, 0.45098, 1)
+shader_parameter/shadowColor = Color(0.478431, 0.282353, 0.254902, 1)

@@ -6,6 +6,7 @@ uniform sampler2D depth_texture : hint_depth_texture, repeat_disable, filter_nea
 uniform sampler2D normal_texture : hint_normal_roughness_texture, repeat_disable, filter_nearest;
 
 uniform float outlineThreshold: hint_range(0.0, 10.0, 0.1) = 1.0;
+uniform float inlineThreshold: hint_range(0.0, 1.0, 0.01) = 1.0;
 uniform vec3 normalEdgeBias = vec3(1.0);
 
 float getDepth(vec2 screen_uv, mat4 invProjectionMatrix) {
@@ -68,7 +69,7 @@ void fragment() {
 	}
 	
 	float outlineValue = step(outlineThreshold, depthDifference);
-	float inlineValue = step(outlineThreshold, sqrt(normalSum));
+	float inlineValue = step(inlineThreshold, sqrt(normalSum));
 	inlineValue *= step(0.0, depthDifference);
 	vec3 edgeMix;
 	if(outlineValue > 0.0){
