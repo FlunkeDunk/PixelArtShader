@@ -1,0 +1,34 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bsd11blpgq8tp"]
+
+[sub_resource type="Shader" id="Shader_t4lvj"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back;
+uniform vec3 highlightColor : source_color = vec3(0.45, 0.74, 0.82);
+uniform vec3 midToneColor : source_color = vec3(0.23, 0.36, 0.54);
+uniform vec3 shadowColor : source_color = vec3(0.09, 0.12, 0.21);
+
+
+void fragment() {
+	ALBEDO = vec3(1.0);
+}
+
+void light() {
+	float lightValue = clamp(dot(NORMAL, LIGHT) * ATTENUATION, 0.0, 1.0);
+	vec3 light;
+	if(lightValue < 0.05) {
+		light = shadowColor;
+	} else if(lightValue > 0.9){
+		light = highlightColor;
+	} else {
+		light = midToneColor;
+	}
+	DIFFUSE_LIGHT = light;
+}
+"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_t4lvj")
+shader_parameter/highlightColor = Color(0.905882, 0.835294, 0.701961, 1)
+shader_parameter/midToneColor = Color(0.752941, 0.580392, 0.45098, 1)
+shader_parameter/shadowColor = Color(0.478431, 0.282353, 0.254902, 1)

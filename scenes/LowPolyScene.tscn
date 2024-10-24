@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfoeeb1au6jx6"]
+
+[ext_resource type="Material" uid="uid://dxsd0beirpbsh" path="res://Resources/Bluebox.tres" id="1_hm88o"]
+[ext_resource type="Material" uid="uid://bsd11blpgq8tp" path="res://Resources/Ground.tres" id="1_pw6lx"]
+[ext_resource type="Script" path="res://Scripts/float_box.gd" id="2_64uwc"]
+[ext_resource type="Shader" path="res://Shaders/PixelArtShader.gdshader" id="3_wqs07"]
+
+[sub_resource type="Environment" id="Environment_ckft2"]
+background_mode = 1
+background_energy_multiplier = 0.0
+ambient_light_energy = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_konic"]
+material = ExtResource("1_pw6lx")
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wxwu7"]
+material = ExtResource("1_hm88o")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hleni"]
+render_priority = 0
+shader = ExtResource("3_wqs07")
+shader_parameter/outlineThreshold = 0.6
+shader_parameter/normalEdgeBias = Vector3(1, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_5m3mt"]
+material = SubResource("ShaderMaterial_hleni")
+flip_faces = true
+size = Vector2(2, 2)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 4
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(288, 162)
+render_target_update_mode = 4
+
+[node name="World" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_ckft2")
+
+[node name="Ground" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World"]
+mesh = SubResource("BoxMesh_konic")
+
+[node name="FloatBox" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World"]
+transform = Transform3D(-0.729994, -0.0827005, -0.683718, -0.0330378, 0.995769, -0.0859805, 0.687964, -0.0399216, -0.729627, 0, 1.20666, 0)
+mesh = SubResource("BoxMesh_wxwu7")
+script = ExtResource("2_64uwc")
+
+[node name="CameraRigger" type="Marker3D" parent="SubViewportContainer/SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 9.05, 10)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/World/CameraRigger"]
+transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 0, 0, 0)
+projection = 1
+size = 10.0
+far = 100.0
+
+[node name="ShaderQuad" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/CameraRigger/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0127693, -0.132103, 0.0245099)
+cast_shadow = 0
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_5m3mt")
+skeleton = NodePath("")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/World"]
+transform = Transform3D(-0.840923, 0.406737, 0.356951, 0.390731, 1.70794e-08, 0.920505, 0.374403, 0.913545, -0.158925, -0.287515, 7.15363, 1.40196)
+shadow_enabled = true
+shadow_bias = 0.09
+shadow_blur = 0.05
+directional_shadow_mode = 1
+sky_mode = 1

@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dxsd0beirpbsh"]
+
+[ext_resource type="Shader" path="res://Shaders/ToonShader.gdshader" id="1_ouxf3"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ouxf3")
+shader_parameter/highlightColor = Color(0.45, 0.74, 0.82, 1)
+shader_parameter/midToneColor = Color(0.2709, 0.420525, 0.63, 1)
+shader_parameter/shadowColor = Color(0.09, 0.12, 0.21, 1)
