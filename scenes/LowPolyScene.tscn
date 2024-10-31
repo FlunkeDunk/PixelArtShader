@@ -1,22 +1,35 @@
-[gd_scene load_steps=13 format=4 uid="uid://cfoeeb1au6jx6"]
+[gd_scene load_steps=20 format=4 uid="uid://cfoeeb1au6jx6"]
 
 [ext_resource type="Script" path="res://Scripts/objects.gd" id="1_4pelj"]
-[ext_resource type="Material" uid="uid://dxsd0beirpbsh" path="res://Resources/BlueboxToon.tres" id="1_hm88o"]
 [ext_resource type="Material" uid="uid://bbxa4wl3127sm" path="res://Resources/GroundToon.tres" id="1_qa11n"]
+[ext_resource type="Script" path="res://Scripts/display.gd" id="1_v1cry"]
 [ext_resource type="Script" path="res://Scripts/float_box.gd" id="2_64uwc"]
 [ext_resource type="Material" uid="uid://daadscrxl0yda" path="res://Resources/RedBoxToon.tres" id="2_f2a8n"]
 [ext_resource type="Shader" path="res://Shaders/PixelArtShader.gdshader" id="3_wqs07"]
+[ext_resource type="Material" uid="uid://dxsd0beirpbsh" path="res://Resources/BlueboxToon.tres" id="4_snwey"]
+[ext_resource type="Script" path="res://scenes/PixelArtCamera.gd" id="7_b51t5"]
+[ext_resource type="Material" uid="uid://c0nipxpo8cs10" path="res://Resources/RockToon.tres" id="7_uu6br"]
+[ext_resource type="Script" path="res://Scripts/camera_rigger.gd" id="8_pssnr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ho3ta"]
+
+[sub_resource type="Sky" id="Sky_4ujgr"]
+sky_material = SubResource("ProceduralSkyMaterial_ho3ta")
 
 [sub_resource type="Environment" id="Environment_ckft2"]
 background_mode = 1
-background_energy_multiplier = 0.0
-ambient_light_energy = 0.0
+background_color = Color(0.32, 0.66, 1, 1)
+sky = SubResource("Sky_4ujgr")
+ambient_light_source = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_konic"]
 material = ExtResource("1_qa11n")
-size = Vector3(10, 1, 10)
+size = Vector3(20, 1, 20)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wxwu7"]
+material = ExtResource("4_snwey")
+
+[sub_resource type="BoxMesh" id="BoxMesh_hi6hg"]
 material = ExtResource("2_f2a8n")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1lhxy"]
@@ -25,7 +38,7 @@ _surfaces = [{
 "format": 34896613383,
 "index_count": 324,
 "index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcAGAAZABoAGwAcAB0AHgAfACAAIQAiACMAJAAlACYAJwAoACkAKgArACwALQAuAC8AMAAxADIAMwA0ADUANgA3ADgAOQA6ADsAPAA9AD4APwBAAEEAQgBDAEQARQBGAEcASABJAEoASwBMAE0ATgBPAFAAUQBSAFMAVABVAFYAVwBYAFkAWgBbAFwAXQBeAF8AYABhAGIAYwBkAGUAZgBnAGgAaQBqAGsAbABtAG4AbwBwAHEAcgBzAHQAdQB2AHcAeAB5AHoAewB8AH0AfgB/AIAAgQCCAIMAhACFAIYAhwCIAIkAigCLAIwAjQCOAI8AkACRAJIAkwCUAJUAlgCXAJgAmQCaAJsAnACdAJ4AnwCgAKEAogCjAKQApQCmAKcAqACpAKoAqwCsAK0ArgCvALAAsQCyALMAtAC1ALYAtwC4ALkAugC7ALwAvQC+AL8AvwC+AMAAwQDCAMMAxADFAMYAxwDIAMkAygDLAMwAzQDOAM8A0ADRANIA0wDUANUA1gDXANgA2QDaANsA3ADdAN4A3wDgAOEA4QDgAOIA4wDkAOUA5gDnAOgA6ADnAOkA6gDrAOwA7QDuAO8A8ADxAPIA8wD0APUA9gD3APgA+QD6APsA/AD9AP4A/wAAAQEBAgEDAQQBBQEGAQcBCAEJAQoBCwEMAQ0BDgEPARABEQESARMBFAEVARYBFwEYARkBGgEbARwBHQEeAR8BIAEhASIBIwEkASUBJgEnASgBKQEqASsBLAEtAS4BLwEwATEBMgEzATQBNQE2ATcBOAE5AToBOwE8AT0B"),
-"material": ExtResource("1_hm88o"),
+"material": ExtResource("7_uu6br"),
 "name": "mat22",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -34,15 +47,17 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hleni"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iww30"]
 render_priority = 0
 shader = ExtResource("3_wqs07")
-shader_parameter/outlineThreshold = 0.3
-shader_parameter/inlineThreshold = 0.3
+shader_parameter/outlineThreshold = 0.4
+shader_parameter/inlineThreshold = 0.48
 shader_parameter/normalEdgeBias = Vector3(1, 1, 1)
+shader_parameter/onlyOutline = false
+shader_parameter/showNormals = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_5m3mt"]
-material = SubResource("ShaderMaterial_hleni")
+material = SubResource("ShaderMaterial_iww30")
 flip_faces = true
 size = Vector2(2, 2)
 
@@ -51,80 +66,129 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -40.0
-offset_right = -16.0
-offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="Display" type="SubViewportContainer" parent="."]
+process_priority = 1
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -966.0
+offset_top = -546.0
+offset_right = 966.0
+offset_bottom = 546.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 4
+stretch_shrink = 6
+script = ExtResource("1_v1cry")
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Display"]
+unique_name_in_owner = true
 handle_input_locally = false
-size = Vector2i(288, 162)
+size = Vector2i(322, 182)
 render_target_update_mode = 4
 
-[node name="World" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+[node name="World" type="WorldEnvironment" parent="Display/SubViewport"]
 environment = SubResource("Environment_ckft2")
 
-[node name="Objects" type="Node3D" parent="SubViewportContainer/SubViewport/World"]
+[node name="Objects" type="Node3D" parent="Display/SubViewport/World"]
 script = ExtResource("1_4pelj")
 
-[node name="Ground" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Objects"]
+[node name="Ground" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
 transform = Transform3D(0.999998, -0.000288545, -0.00172466, 0.000292234, 0.999998, 0.00213206, 0.00172404, -0.00213256, 0.999996, 0, 0, 0)
 mesh = SubResource("BoxMesh_konic")
 skeleton = NodePath("../..")
 
-[node name="FloatBox" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Objects"]
-transform = Transform3D(0.983907, 0, 0.205941, 0, 1.00001, 0, -0.205941, 0, 0.983909, 0, 3.85891, 0)
+[node name="FloatBox" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(0.33188, 0, -0.952936, 0, 1.00001, 0, 0.952936, 0, 0.33188, 0, 2.06635, 0)
 mesh = SubResource("BoxMesh_wxwu7")
 skeleton = NodePath("../..")
 script = ExtResource("2_64uwc")
 
-[node name="Rocks" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Objects"]
-transform = Transform3D(2.14333, 0, 0, 0, 1.61781, 0, 0, 0, 2.83607, -1.50365, 1.18962, 2.6274)
+[node name="Wall1" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(0.947465, 0, 0, 0, -13.079, 0, 0, 0, -0.700143, -5.44387, -1.76437, 3.35516)
+mesh = SubResource("BoxMesh_hi6hg")
+skeleton = NodePath("../..")
+
+[node name="Wall3" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(0.947465, 0, 0, 0, -13.079, 0, 0, 0, -0.700143, -4.7497, -0.847032, 1.12634)
+mesh = SubResource("BoxMesh_hi6hg")
+skeleton = NodePath("../..")
+
+[node name="Wall4" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(0.947465, 0, 0, 0, -13.079, 0, 0, 0, -0.700143, -3.58611, -0.063967, -0.853205)
+mesh = SubResource("BoxMesh_hi6hg")
+skeleton = NodePath("../..")
+
+[node name="Wall5" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(5.32525, 0, 0, 0, -5.83469, 0, 0, 0, -0.700143, -0.940662, 2.95507, -5.50524)
+mesh = SubResource("BoxMesh_hi6hg")
+skeleton = NodePath("../..")
+
+[node name="Wall6" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(0.976824, 0, 0, 0, 1.29116, 0, 0, 0, -0.700143, -0.89133, 2.95303, -4.73608)
+mesh = SubResource("BoxMesh_hi6hg")
+skeleton = NodePath("../..")
+
+[node name="Wall7" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(0.976824, 0, 0, 0, 1.29116, 0, 0, 0, -0.700143, -0.89133, 5.04648, -4.73608)
+mesh = SubResource("BoxMesh_hi6hg")
+skeleton = NodePath("../..")
+
+[node name="Wall8" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(0.976824, 0, 0, 0, 1.29116, 0, 0, 0, -0.700143, 0.603851, 5.04648, -4.73608)
+mesh = SubResource("BoxMesh_hi6hg")
+skeleton = NodePath("../..")
+
+[node name="Wall9" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(0.976824, 0, 0, 0, 1.29116, 0, 0, 0, -0.700143, -2.68214, 5.04648, -4.73608)
+mesh = SubResource("BoxMesh_hi6hg")
+skeleton = NodePath("../..")
+
+[node name="Rocks4" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(2.14333, 0, 0, 0, 1.61781, 0, 0, 0, 2.83607, -1.50365, 0.966471, 2.6274)
 mesh = SubResource("ArrayMesh_1lhxy")
 skeleton = NodePath("../..")
 
-[node name="Rocks2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Objects"]
-transform = Transform3D(2.14333, 0, 0, 0, 1.61781, 0, 0, 0, 2.83607, 2.70348, 1.18962, -1.01988)
+[node name="Rocks2" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(2.14333, 0, 0, 0, 1.61781, 0, 0, 0, 2.83607, 2.70348, 0.966471, -1.01988)
 mesh = SubResource("ArrayMesh_1lhxy")
 skeleton = NodePath("../..")
 
-[node name="Rocks3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Objects"]
-transform = Transform3D(2.14333, 0, 0, 0, 1.61781, 0, 0, 0, 2.83607, -3.07702, 1.18962, -2.31791)
+[node name="Rocks3" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(2.14333, 0, 0, 0, 1.61781, 0, 0, 0, 2.83607, -3.07702, 0.966471, -2.31791)
 mesh = SubResource("ArrayMesh_1lhxy")
 skeleton = NodePath("../..")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/World/Objects"]
-transform = Transform3D(-0.840923, 0.406737, 0.35695, 0.390731, 2.15039e-07, 0.920505, 0.374403, 0.913545, -0.158925, -0.287515, 7.15363, 1.40196)
+[node name="Light" type="DirectionalLight3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(-0.47616, -0.343035, 0.80969, 0.821637, 0.154544, 0.548661, -0.313342, 0.926522, 0.208263, 0, 7.154, 0)
 shadow_enabled = true
-shadow_bias = 0.09
-shadow_blur = 0.05
-directional_shadow_mode = 1
+shadow_bias = 1.0
+shadow_blur = 0.01
+directional_shadow_mode = 0
+directional_shadow_max_distance = 40.0
 sky_mode = 1
 
-[node name="CameraRigger" type="Marker3D" parent="SubViewportContainer/SubViewport/World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 9.05, 10)
+[node name="CameraRigger" type="Marker3D" parent="Display/SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 12, 10)
+script = ExtResource("8_pssnr")
+movementSpeed = 0.1
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/World/CameraRigger"]
+[node name="PixelArtCamera" type="Camera3D" parent="Display/SubViewport/World/CameraRigger"]
 transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 0, 0, 0)
 projection = 1
 size = 10.0
-far = 100.0
+far = 50.0
+script = ExtResource("7_b51t5")
 
-[node name="ShaderQuad" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/CameraRigger/Camera3D"]
+[node name="ShaderQuad" type="MeshInstance3D" parent="Display/SubViewport/World/CameraRigger/PixelArtCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0127693, -0.132103, 0.0245099)
 cast_shadow = 0
 extra_cull_margin = 16384.0

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://tj6615ohdype"
+path="res://.godot/imported/DisplacedPlane.obj-e9cd8022f058b0a0f97b677b6247742f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/DisplacedPlane.obj-e9cd8022f058b0a0f97b677b6247742f.mesh"]
+
+source_file="res://Assets/Models/DisplacedPlane.obj"
+dest_files=["res://.godot/imported/DisplacedPlane.obj-e9cd8022f058b0a0f97b677b6247742f.mesh", "res://.godot/imported/DisplacedPlane.obj-e9cd8022f058b0a0f97b677b6247742f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

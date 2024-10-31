@@ -1,0 +1,140 @@
+[gd_scene load_steps=19 format=3 uid="uid://c8ufeifcwbrqn"]
+
+[ext_resource type="Script" path="res://Scripts/display.gd" id="1_qxw0l"]
+[ext_resource type="Script" path="res://Scripts/objects.gd" id="2_srdu4"]
+[ext_resource type="Material" uid="uid://dtfl02imb480x" path="res://Resources/grassToon.tres" id="3_3ujoa"]
+[ext_resource type="Material" uid="uid://daadscrxl0yda" path="res://Resources/RedBoxToon.tres" id="3_n0e05"]
+[ext_resource type="ArrayMesh" uid="uid://tj6615ohdype" path="res://Assets/Models/DisplacedPlane.obj" id="4_2n4wa"]
+[ext_resource type="Script" path="res://Scripts/grassMultiMesh.gd" id="7_25x8q"]
+[ext_resource type="Material" uid="uid://bhwhstjgwbobj" path="res://Resources/grassSpriteToon.tres" id="7_sk6wc"]
+[ext_resource type="Script" path="res://Scripts/camera_rigger.gd" id="7_v7aao"]
+[ext_resource type="Script" path="res://scenes/PixelArtCamera.gd" id="8_msxdj"]
+[ext_resource type="Shader" path="res://Shaders/PixelArtShader.gdshader" id="9_uw48f"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ho3ta"]
+
+[sub_resource type="Sky" id="Sky_4ujgr"]
+sky_material = SubResource("ProceduralSkyMaterial_ho3ta")
+
+[sub_resource type="Environment" id="Environment_ckft2"]
+background_mode = 1
+background_color = Color(0.32, 0.66, 1, 1)
+sky = SubResource("Sky_4ujgr")
+ambient_light_source = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhflx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ha6c"]
+material = ExtResource("3_n0e05")
+
+[sub_resource type="QuadMesh" id="QuadMesh_bca51"]
+material = ExtResource("7_sk6wc")
+size = Vector2(0.5, 0.5)
+center_offset = Vector3(0, 0.205, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hleni"]
+render_priority = -1
+shader = ExtResource("9_uw48f")
+shader_parameter/outlineThreshold = 0.4
+shader_parameter/inlineThreshold = 0.48
+shader_parameter/normalEdgeBias = Vector3(1, 1, 1)
+shader_parameter/onlyOutline = false
+shader_parameter/showNormals = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_18vas"]
+material = SubResource("ShaderMaterial_hleni")
+flip_faces = true
+size = Vector2(2, 2)
+
+[node name="GrassCene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Display" type="SubViewportContainer" parent="."]
+process_priority = 1
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -966.0
+offset_top = -546.0
+offset_right = 966.0
+offset_bottom = 546.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+script = ExtResource("1_qxw0l")
+
+[node name="SubViewport" type="SubViewport" parent="Display"]
+unique_name_in_owner = true
+handle_input_locally = false
+size = Vector2i(1932, 1092)
+render_target_update_mode = 4
+
+[node name="World" type="WorldEnvironment" parent="Display/SubViewport"]
+environment = SubResource("Environment_ckft2")
+
+[node name="Objects" type="Node3D" parent="Display/SubViewport/World"]
+script = ExtResource("2_srdu4")
+
+[node name="Light" type="DirectionalLight3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(0.645725, -3.33768e-08, 0.76357, -0.76357, -2.82255e-08, 0.645725, 2.28286e-16, -1, -4.37114e-08, 0, 13.7439, 0)
+shadow_enabled = true
+shadow_bias = 1.0
+shadow_blur = 0.01
+directional_shadow_mode = 0
+directional_shadow_max_distance = 40.0
+sky_mode = 1
+
+[node name="GrassTerrain" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+material_override = ExtResource("3_3ujoa")
+cast_shadow = 0
+mesh = ExtResource("4_2n4wa")
+surface_material_override/0 = SubResource("StandardMaterial3D_fhflx")
+
+[node name="Wall3" type="MeshInstance3D" parent="Display/SubViewport/World/Objects/GrassTerrain"]
+transform = Transform3D(0.1, 0, 0, 0, -1, -1.50996e-08, 0, 1.50996e-07, -0.1, 0.159772, 0.500846, 0.0415547)
+mesh = SubResource("BoxMesh_7ha6c")
+skeleton = NodePath("../GrassMultiMesh")
+
+[node name="GrassMultiMesh" type="MultiMeshInstance3D" parent="Display/SubViewport/World/Objects/GrassTerrain" node_paths=PackedStringArray("terrain", "grassMesh")]
+cast_shadow = 0
+script = ExtResource("7_25x8q")
+terrain = NodePath("..")
+grassMesh = NodePath("GrassMesh")
+
+[node name="GrassMesh" type="MeshInstance3D" parent="Display/SubViewport/World/Objects/GrassTerrain/GrassMultiMesh"]
+visible = false
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_bca51")
+
+[node name="Marker3D" type="Marker3D" parent="Display/SubViewport/World/Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.518, 0.245, -6.567)
+
+[node name="CameraRigger" type="Marker3D" parent="Display/SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 12, 10)
+script = ExtResource("7_v7aao")
+movementSpeed = 0.1
+
+[node name="PixelArtCamera" type="Camera3D" parent="Display/SubViewport/World/CameraRigger"]
+transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 0, 0, 0)
+projection = 1
+size = 10.0
+far = 50.0
+script = ExtResource("8_msxdj")
+
+[node name="ShaderQuad" type="MeshInstance3D" parent="Display/SubViewport/World/CameraRigger/PixelArtCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0127693, -0.132103, 0.0245099)
+cast_shadow = 0
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_18vas")
+skeleton = NodePath("")

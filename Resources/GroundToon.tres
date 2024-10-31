@@ -8,3 +8,5 @@ shader = ExtResource("1_aicdm")
 shader_parameter/highlightColor = Color(0.905882, 0.835294, 0.701961, 1)
 shader_parameter/midToneColor = Color(0.752941, 0.580392, 0.45098, 1)
 shader_parameter/shadowColor = Color(0.478431, 0.282353, 0.254902, 1)
+shader_parameter/highlightThreshhold = 0.5
+shader_parameter/shadowThreshhold = 0.1
