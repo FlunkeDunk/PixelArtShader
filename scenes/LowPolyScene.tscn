@@ -1,15 +1,15 @@
 [gd_scene load_steps=20 format=4 uid="uid://cfoeeb1au6jx6"]
 
-[ext_resource type="Script" path="res://Scripts/objects.gd" id="1_4pelj"]
+[ext_resource type="Script" uid="uid://4wlxrb3fit8k" path="res://Scripts/objects.gd" id="1_4pelj"]
 [ext_resource type="Material" uid="uid://bbxa4wl3127sm" path="res://Resources/GroundToon.tres" id="1_qa11n"]
-[ext_resource type="Script" path="res://Scripts/display.gd" id="1_v1cry"]
-[ext_resource type="Script" path="res://Scripts/float_box.gd" id="2_64uwc"]
+[ext_resource type="Script" uid="uid://d3nduvuy5qlv" path="res://Scripts/display.gd" id="1_v1cry"]
+[ext_resource type="Script" uid="uid://cqmktf5fkfuhi" path="res://Scripts/float_box.gd" id="2_64uwc"]
 [ext_resource type="Material" uid="uid://daadscrxl0yda" path="res://Resources/RedBoxToon.tres" id="2_f2a8n"]
-[ext_resource type="Shader" path="res://Shaders/PixelArtShader.gdshader" id="3_wqs07"]
+[ext_resource type="Shader" uid="uid://bykd83fwvddc7" path="res://Shaders/PixelArtShader.gdshader" id="3_wqs07"]
 [ext_resource type="Material" uid="uid://dxsd0beirpbsh" path="res://Resources/BlueboxToon.tres" id="4_snwey"]
-[ext_resource type="Script" path="res://scenes/PixelArtCamera.gd" id="7_b51t5"]
+[ext_resource type="Script" uid="uid://b622ia06vb65i" path="res://scenes/PixelArtCamera.gd" id="7_b51t5"]
 [ext_resource type="Material" uid="uid://c0nipxpo8cs10" path="res://Resources/RockToon.tres" id="7_uu6br"]
-[ext_resource type="Script" path="res://Scripts/camera_rigger.gd" id="8_pssnr"]
+[ext_resource type="Script" uid="uid://ce8qpg5a1mmry" path="res://Scripts/camera_rigger.gd" id="8_pssnr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ho3ta"]
 
@@ -107,7 +107,7 @@ mesh = SubResource("BoxMesh_konic")
 skeleton = NodePath("../..")
 
 [node name="FloatBox" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
-transform = Transform3D(0.33188, 0, -0.952936, 0, 1.00001, 0, 0.952936, 0, 0.33188, 0, 2.06635, 0)
+transform = Transform3D(-0.799912, 0, 0.615138, 0, 1.00001, 0, -0.615138, 0, -0.799912, 0, 2.45189, 0)
 mesh = SubResource("BoxMesh_wxwu7")
 skeleton = NodePath("../..")
 script = ExtResource("2_64uwc")

@@ -1,7 +1,7 @@
 // NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
 
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, unshaded;
+render_mode depth_draw_opaque, cull_back;
 
 uniform vec3 highlightColor : source_color = vec3(0.45, 0.74, 0.82);
 uniform vec3 midToneColor : source_color = vec3(0.23, 0.36, 0.54);
@@ -23,19 +23,18 @@ void vertex() {
 			MAIN_CAM_INV_VIEW_MATRIX[2],
 			MODEL_MATRIX[3]);
 	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
-	
 	  // Convert the world normal to view (camera) space
-    vec3 view_normal = (VIEW_MATRIX * vec4(COLOR.rgb, 0.0)).xyz;
-	
+    vec3 view_normal = (VIEW_MATRIX * vec4(INSTANCE_CUSTOM.rgb, 0.0)).xyz;
+
     // Normalize the result, as screen normals should be normalized
-    view_normal = normalize(view_normal);
-	
+    //view_normal = normalize(view_normal);
+
 	viewNormal = view_normal;
 }
 
 void fragment() {
 	ALBEDO = vec3(1.0);
-	ALBEDO = viewNormal;
+	//ALBEDO = viewNormal;
 	vec4 albedo_tex = texture(texture_albedo, UV);
 	ALPHA *= albedo_tex.a;
 }

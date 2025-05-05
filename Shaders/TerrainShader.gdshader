@@ -13,9 +13,11 @@ uniform sampler2D noiseNormalMap: repeat_enable;
 void vertex() {
 	float noiseValue = texture(noiseMap, UV).x;
 	VERTEX.y += noiseValue;
-	NORMAL = normalize(texture(noiseNormalMap, UV).xzy * 2.0 - 1.0);
-	NORMAL.z *= -1.0;
+	vec3 worldNormal = normalize(texture(noiseNormalMap, UV).xzy * 2.0 - 1.0);
+	worldNormal.z *= -1.0;
 	//NORMAL = texture(noiseNormalMap, UV).rgb;
+	vec3 viewNormal = (VIEW_MATRIX * vec4(worldNormal, 0.0)).xyz;
+	NORMAL = viewNormal;
 }
 
 void fragment() {

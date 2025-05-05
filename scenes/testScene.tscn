@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=4 uid="uid://dh6x83i60w44k"]
 
-[ext_resource type="Script" path="res://Scripts/objects.gd" id="1_uw0cg"]
-[ext_resource type="Script" path="res://Scripts/float_box.gd" id="2_qv5ra"]
-[ext_resource type="Shader" path="res://Shaders/PixelArtShader.gdshader" id="3_7wqe4"]
+[ext_resource type="Script" uid="uid://4wlxrb3fit8k" path="res://Scripts/objects.gd" id="1_uw0cg"]
+[ext_resource type="Script" uid="uid://cqmktf5fkfuhi" path="res://Scripts/float_box.gd" id="2_qv5ra"]
+[ext_resource type="Shader" uid="uid://bykd83fwvddc7" path="res://Shaders/PixelArtShader.gdshader" id="3_7wqe4"]
 
 [sub_resource type="Environment" id="Environment_08kqm"]
 background_mode = 1
@@ -57,6 +57,8 @@ shader = ExtResource("3_7wqe4")
 shader_parameter/outlineThreshold = 0.3
 shader_parameter/inlineThreshold = 0.3
 shader_parameter/normalEdgeBias = Vector3(1, 1, 1)
+shader_parameter/onlyOutline = false
+shader_parameter/showNormals = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_5m3mt"]
 material = SubResource("ShaderMaterial_hleni")

@@ -1,15 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://c8ufeifcwbrqn"]
+[gd_scene load_steps=18 format=3 uid="uid://c8ufeifcwbrqn"]
 
-[ext_resource type="Script" path="res://Scripts/display.gd" id="1_qxw0l"]
-[ext_resource type="Script" path="res://Scripts/objects.gd" id="2_srdu4"]
+[ext_resource type="Script" uid="uid://d3nduvuy5qlv" path="res://Scripts/display.gd" id="1_qxw0l"]
+[ext_resource type="Script" uid="uid://4wlxrb3fit8k" path="res://Scripts/objects.gd" id="2_srdu4"]
 [ext_resource type="Material" uid="uid://dtfl02imb480x" path="res://Resources/grassToon.tres" id="3_3ujoa"]
 [ext_resource type="Material" uid="uid://daadscrxl0yda" path="res://Resources/RedBoxToon.tres" id="3_n0e05"]
-[ext_resource type="ArrayMesh" uid="uid://tj6615ohdype" path="res://Assets/Models/DisplacedPlane.obj" id="4_2n4wa"]
-[ext_resource type="Script" path="res://Scripts/grassMultiMesh.gd" id="7_25x8q"]
+[ext_resource type="ArrayMesh" uid="uid://bwk1n2ybicanx" path="res://Assets/Models/Pyramid.obj" id="4_a8p6b"]
+[ext_resource type="Script" uid="uid://4lqih5khffsf" path="res://Scripts/grassMultiMesh.gd" id="7_25x8q"]
 [ext_resource type="Material" uid="uid://bhwhstjgwbobj" path="res://Resources/grassSpriteToon.tres" id="7_sk6wc"]
-[ext_resource type="Script" path="res://Scripts/camera_rigger.gd" id="7_v7aao"]
-[ext_resource type="Script" path="res://scenes/PixelArtCamera.gd" id="8_msxdj"]
-[ext_resource type="Shader" path="res://Shaders/PixelArtShader.gdshader" id="9_uw48f"]
+[ext_resource type="Script" uid="uid://ce8qpg5a1mmry" path="res://Scripts/camera_rigger.gd" id="7_v7aao"]
+[ext_resource type="Script" uid="uid://b622ia06vb65i" path="res://scenes/PixelArtCamera.gd" id="8_msxdj"]
+[ext_resource type="Shader" uid="uid://bykd83fwvddc7" path="res://Shaders/PixelArtShader.gdshader" id="9_uw48f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ho3ta"]
 
@@ -21,8 +21,6 @@ background_mode = 1
 background_color = Color(0.32, 0.66, 1, 1)
 sky = SubResource("Sky_4ujgr")
 ambient_light_source = 1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhflx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7ha6c"]
 material = ExtResource("3_n0e05")
@@ -39,7 +37,7 @@ shader_parameter/outlineThreshold = 0.4
 shader_parameter/inlineThreshold = 0.48
 shader_parameter/normalEdgeBias = Vector3(1, 1, 1)
 shader_parameter/onlyOutline = false
-shader_parameter/showNormals = true
+shader_parameter/showNormals = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_18vas"]
 material = SubResource("ShaderMaterial_hleni")
@@ -71,12 +69,13 @@ offset_bottom = 546.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
+stretch_shrink = 6
 script = ExtResource("1_qxw0l")
 
 [node name="SubViewport" type="SubViewport" parent="Display"]
 unique_name_in_owner = true
 handle_input_locally = false
-size = Vector2i(1932, 1092)
+size = Vector2i(322, 182)
 render_target_update_mode = 4
 
 [node name="World" type="WorldEnvironment" parent="Display/SubViewport"]
@@ -97,12 +96,10 @@ sky_mode = 1
 [node name="GrassTerrain" type="MeshInstance3D" parent="Display/SubViewport/World/Objects"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 material_override = ExtResource("3_3ujoa")
-cast_shadow = 0
-mesh = ExtResource("4_2n4wa")
-surface_material_override/0 = SubResource("StandardMaterial3D_fhflx")
+mesh = ExtResource("4_a8p6b")
 
 [node name="Wall3" type="MeshInstance3D" parent="Display/SubViewport/World/Objects/GrassTerrain"]
-transform = Transform3D(0.1, 0, 0, 0, -1, -1.50996e-08, 0, 1.50996e-07, -0.1, 0.159772, 0.500846, 0.0415547)
+transform = Transform3D(0.1, 0, 0, 0, -1, -1.50996e-08, 0, 1.50996e-07, -0.1, 0.159772, 1.12018, 0.0415547)
 mesh = SubResource("BoxMesh_7ha6c")
 skeleton = NodePath("../GrassMultiMesh")
 

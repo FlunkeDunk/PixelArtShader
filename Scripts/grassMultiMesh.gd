@@ -29,10 +29,10 @@ func _ready() -> void:
 	# Initialize MultiMesh
 	multimesh = MultiMesh.new()
 	multimesh.transform_format = MultiMesh.TRANSFORM_3D
-	multimesh.set_use_colors(true)
+	multimesh.set_use_custom_data(true)
 	multimesh.mesh = grassMesh.mesh
-	multimesh.instance_count = 2000
-	
+	multimesh.instance_count = 20000
+	var normalArray: Array
 	for i in range(multimesh.instance_count):
 		var randomArea: float = randf_range(0, areaSum)
 		var j: int = 0
@@ -67,4 +67,8 @@ func _ready() -> void:
 		var normal: Vector3 = meshDataTool.get_face_normal(j).normalized()
 		var meshPosition := Transform3D(Basis(), randomPoint)
 		multimesh.set_instance_transform(i, meshPosition)
-		multimesh.set_instance_color(i, Color(normal.x, normal.y, normal.z, 1.0))
+		multimesh.set_instance_custom_data(i, Color(normal.x, normal.y, normal.z, 1.0))
+		if not normalArray.has(normal):
+			print(normal)
+			normalArray.append(normal)
+		
